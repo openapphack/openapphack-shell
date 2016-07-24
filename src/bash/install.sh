@@ -3,6 +3,7 @@
 # Global variables
 #OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/
 OAH_INSTALLER_SERVICE="@OAH_INSTALLER_SERVICE@"
+#OAH meta data service for validated OAH environments
 OAH_ENV_META_DATA_SERVICE="@OAH_ENV_META_DATA_SERVICE@"
 #OAH_VERSION=0.0.1
 OAH_VERSION="@OAH_VERSION@"
@@ -16,13 +17,12 @@ oah_stage_folder="${oah_tmp_folder}/stage"
 oah_zip_file="${oah_tmp_folder}/res-${OAH_VERSION}.zip"
 oah_etc_folder="${OAH_DIR}/etc"
 oah_var_folder="${OAH_DIR}/var"
-oah_vm_folder="${OAH_DIR}/data/vm"
-oah_dotvms_folder="${OAH_DIR}/.vms"
+oah_current_env_folder="${OAH_DIR}/data/current-env/"
+oah_dotenvs_folder="${OAH_DIR}/data/.envs/"
 oah_config_file="${oah_etc_folder}/config"
 oah_bash_profile="${HOME}/.bash_profile"
 oah_profile="${HOME}/.profile"
 oah_bashrc="${HOME}/.bashrc"
-oah_zshrc="${HOME}/.zshrc"
 oah_platform=$(uname)
 
 oah_init_snippet=$( cat << EOF
@@ -52,7 +52,7 @@ case "$(uname)" in
 esac
 
 echo '                                                                     '
-echo 'Thanks for using     OpenAppHack Cli                                 '
+echo 'Thanks for using     OpenAppHack(OAH SHELL)                          '
 echo '                                                                     '
 echo '                                                                     '
 echo '                                       Will now attempt installing...'
@@ -165,8 +165,8 @@ mkdir -p "${oah_stage_folder}"
 mkdir -p "${oah_ext_folder}"
 mkdir -p "${oah_etc_folder}"
 mkdir -p "${oah_var_folder}"
-mkdir -p "${oah_vm_folder}"
-mkdir -p "${oah_dotvms_folder}"
+mkdir -p "${oah_current_env_folder}"
+mkdir -p "${oah_dotenvs_folder}"
 
 echo "Create candidate directories..."
 
@@ -185,8 +185,8 @@ for (( i=0; i <= ${#OAH_CANDIDATES}; i++ )); do
 	# Eliminate empty entries due to incompatibility
 	if [[ -n ${OAH_CANDIDATES[${i}]} ]]; then
 		CANDIDATE_NAME="${OAH_CANDIDATES[${i}]}"
-		mkdir -p "${OAH_DIR}/.vms/${CANDIDATE_NAME}"
-		echo "Created for ${CANDIDATE_NAME}: ${OAH_DIR}/.vms/${CANDIDATE_NAME}"
+		mkdir -p "${OAH_DIR}/data/.envs/${CANDIDATE_NAME}"
+		echo "Created for ${CANDIDATE_NAME}: ${OAH_DIR}/data/.envs/${CANDIDATE_NAME}"
 		unset CANDIDATE_NAME
 	fi
 done
