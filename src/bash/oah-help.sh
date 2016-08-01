@@ -4,8 +4,8 @@
 
 function __oah_help {
 	echo ""
-	echo "Usage: app <command> <candidate> [version]"
-	echo "       app offline <enable|disable>"
+	echo "Usage: oah <command> <candidate> [version]"
+	echo "       oah offline <enable|disable>"
 	echo ""
 	echo "   commands:"
 	echo "       install   or i    <candidate> [version]"
@@ -15,7 +15,9 @@ function __oah_help {
 	echo "       default   or d    <candidate> [version]"
 	echo "       current   or c    [candidate]"
 	echo "       outdated  or o    [candidate]"
-  echo "       up        or up"
+	echo "       reset     or re   [candidate]"
+	echo "       remove    or rm   [candidate]"
+	echo "       up        or up"
   echo "       halt      or k"
   echo "       provision or p"
   echo "       destroy   or x"
@@ -27,8 +29,8 @@ function __oah_help {
 	echo "       flush             <candidates|broadcast|archives|temp>"
 	echo ""
 	echo -n "   candidate  :  "
-	echo "$OPENAPPHACK_CANDIDATES_CSV" | sed 's/,/, /g'
+	echo "$OAH_CANDIDATES_CSV" | sed 's/,/, /g'
 	echo "   version    :  where optional, defaults to latest stable if not provided"
 	echo ""
-	echo "eg: app install openapphack"
+	echo "eg: oah install oah-vm"
 }

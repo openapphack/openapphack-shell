@@ -4,8 +4,11 @@
 #OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/
 OAH_INSTALLER_SERVICE="@OAH_INSTALLER_SERVICE@"
 #OAH meta data service for validated OAH environments
-OAH_ENV_META_DATA_SERVICE="@OAH_ENV_META_DATA_SERVICE@"
-#OAH_VERSION=0.0.1
+#OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/envinfo/candidates.txt
+OAH_ENVS_INFO_SERVICE="@OAH_ENVS_INFO_SERVICE@"
+#OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/broadcast/broadcast.txt
+OAH_BROADCAST_SERVICE="@OAH_BROADCAST_SERVICE@"
+#OAH_VERSION=0.0.1a1
 OAH_VERSION="@OAH_VERSION@"
 OAH_DIR="$HOME/.oah"
 
@@ -15,9 +18,9 @@ oah_src_folder="${OAH_DIR}/src"
 oah_tmp_folder="${OAH_DIR}/tmp"
 oah_stage_folder="${oah_tmp_folder}/stage"
 oah_zip_file="${oah_tmp_folder}/res-${OAH_VERSION}.zip"
-oah_etc_folder="${OAH_DIR}/etc"
-oah_var_folder="${OAH_DIR}/var"
-oah_current_env_folder="${OAH_DIR}/data/current-env/"
+oah_etc_folder="${OAH_DIR}/data/etc"
+oah_var_folder="${OAH_DIR}/data/var"
+oah_current_env_folder="${OAH_DIR}/data/env/"
 oah_dotenvs_folder="${OAH_DIR}/data/.envs/"
 oah_config_file="${oah_etc_folder}/config"
 oah_bash_profile="${HOME}/.bash_profile"
@@ -73,7 +76,7 @@ if [ -d "${OAH_DIR}" ]; then
 	echo ""
 	echo " Please consider running the following if you need to upgrade."
 	echo ""
-	echo "    $ app selfupdate"
+	echo "    $ oah selfupdate"
 	echo ""
 	echo "======================================================================================================"
 	echo ""
@@ -170,10 +173,10 @@ mkdir -p "${oah_dotenvs_folder}"
 
 echo "Create candidate directories..."
 
-OAH_CANDIDATES_CSV=$(curl -s "${OAH_INSTALLER_SERVICE}/candidates")
-echo "$OAH_CANDIDATES_CSV" > "${OAH_DIR}/var/candidates"
+OAH_CANDIDATES_CSV=$(curl -s "${OAH_ENVS_INFO_SERVICE}")
+echo "$OAH_CANDIDATES_CSV" > "${OAH_DIR}/data/var/candidates"
 
-echo "$OAH_VERSION" > "${OAH_DIR}/var/version"
+echo "$OAH_VERSION" > "${OAH_DIR}/data/var/version"
 
 # convert csv to array
 OLD_IFS="$IFS"
@@ -198,7 +201,7 @@ echo "oah_auto_selfupdate=false" >> "${oah_config_file}"
 echo "oah_insecure_ssl=false" >> "${oah_config_file}"
 
 echo "Download script archive..."
-#https://github.com/WiproOpenSourcePractice/oah/raw/gh-pages/
+#https://github.com/openapphack/oah/raw/gh-pages/
 curl -s "${OAH_INSTALLER_SERVICE}/res/oah-cli-scripts.zip" > "${oah_zip_file}"
 
 

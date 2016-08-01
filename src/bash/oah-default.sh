@@ -7,7 +7,7 @@ function __oah_default {
 	__oah_check_candidate_present "${CANDIDATE}" || return 1
 	__oah_determine_version "$2" || return 1
 
-	if [ ! -d "${OPENAPPHACK_DIR}/.vms/${CANDIDATE}/${VERSION}" ]; then
+	if [ ! -d "${OAH_DIR}/data/.envs/${CANDIDATE}/${VERSION}" ]; then
 		echo ""
 		echo "Stop! ${CANDIDATE} ${VERSION} is not installed."
 		return 1

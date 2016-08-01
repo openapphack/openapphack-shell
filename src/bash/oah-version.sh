@@ -2,5 +2,5 @@
 
 
 function __oah_version {
-	echo "OpenAppHack CLI ${OPENAPPHACK_VERSION}"
+	echo "OAH SHELL ${OAH_VERSION}"
 }

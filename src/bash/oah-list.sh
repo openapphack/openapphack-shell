@@ -4,7 +4,7 @@
 function __oah_build_version_csv {
 	CANDIDATE="$1"
 	CSV=""
-	for version in $(find "${OPENAPPHACK_DIR}/.vms/${CANDIDATE}" -maxdepth 1 -mindepth 1 -exec basename '{}' \; | sort); do
+	for version in $(find "${OAH_DIR}/data/.envs/${CANDIDATE}" -maxdepth 1 -mindepth 1 -exec basename '{}' \; | sort); do
 		if [[ "${version}" != 'current' ]]; then
 			CSV="${version},${CSV}"
 		fi
@@ -18,18 +18,18 @@ function __oah_offline_list {
 	echo "------------------------------------------------------------"
 	echo "                                                            "
 
-	openapphack_versions=($(echo ${CSV//,/ }))
-	for (( i=0 ; i <= ${#openapphack_versions} ; i++ )); do
-		if [[ -n "${openapphack_versions[${i}]}" ]]; then
-			if [[ "${openapphack_versions[${i}]}" == "${CURRENT}" ]]; then
-				echo -e " > ${openapphack_versions[${i}]}"
+	oah_versions=($(echo ${CSV//,/ }))
+	for (( i=0 ; i <= ${#oah_versions} ; i++ )); do
+		if [[ -n "${oah_versions[${i}]}" ]]; then
+			if [[ "${oah_versions[${i}]}" == "${CURRENT}" ]]; then
+				echo -e " > ${oah_versions[${i}]}"
 			else
-				echo -e " * ${openapphack_versions[${i}]}"
+				echo -e " * ${oah_versions[${i}]}"
 			fi
 		fi
 	done
 
-	if [[ -z "${openapphack_versions[@]}" ]]; then
+	if [[ -z "${oah_versions[@]}" ]]; then
 		echo "   None installed!"
 	fi
 
@@ -38,7 +38,7 @@ function __oah_offline_list {
 	echo "> - currently in use                                        "
 	echo "------------------------------------------------------------"
 
-	unset CSV openapphack_versions
+	unset CSV oah_versions
 }
 
 function __oah_list {
@@ -47,10 +47,10 @@ function __oah_list {
 	__oah_build_version_csv "${CANDIDATE}"
 	__oah_determine_current_version "${CANDIDATE}"
 
-	if [[ "${OPENAPPHACK_AVAILABLE}" == "false" ]]; then
+	if [[ "${OAH_AVAILABLE}" == "false" ]]; then
 		__oah_offline_list
 	else
-		FRAGMENT=$(curl -s "${OPENAPPHACK_SERVICE}/candidates/${CANDIDATE}/list?platform=${OPENAPPHACK_PLATFORM}&current=${CURRENT}&installed=${CSV}")
+		FRAGMENT=$(curl -s "${OAH_SERVICE}/candidates")
 		echo "${FRAGMENT}"
 		unset FRAGMENT
 	fi
