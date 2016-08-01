@@ -2,35 +2,35 @@
 
 
 function __oah_selfupdate {
-    OPENAPPHACK_FORCE_SELFUPDATE="$1"
-	if [[ "$OPENAPPHACK_AVAILABLE" == "false" ]]; then
+    OAH_FORCE_SELFUPDATE="$1"
+	if [[ "$OAH_AVAILABLE" == "false" ]]; then
 		echo "$OFFLINE_MESSAGE"
 
-	elif [[ "$OPENAPPHACK_REMOTE_VERSION" == "$OPENAPPHACK_VERSION" && "$OPENAPPHACK_FORCE_SELFUPDATE" != "force" ]]; then
+	elif [[ "$OAH_REMOTE_VERSION" == "$OAH_VERSION" && "$OAH_FORCE_SELFUPDATE" != "force" ]]; then
 		echo "No update available at this time."
 
 	else
-		curl -s "${OPENAPPHACK_SERVICE}/selfupdate" | bash
+		curl -s "${OAH_SERVICE}/selfupdate" | bash
 	fi
-	unset OPENAPPHACK_FORCE_SELFUPDATE
+	unset OAH_FORCE_SELFUPDATE
 }
 
 function __oah_auto_update {
 
-    local OPENAPPHACK_REMOTE_VERSION="$1"
-    local OPENAPPHACK_VERSION="$2"
+    local OAH_REMOTE_VERSION="$1"
+    local OAH_VERSION="$2"
 
-    OPENAPPHACK_DELAY_UPGRADE="${OPENAPPHACK_DIR}/var/delay_upgrade"
+    OAH_DELAY_UPGRADE="${OAH_DIR}/var/delay_upgrade"
 
-    if [[ -n "$(find "$OPENAPPHACK_DELAY_UPGRADE" -mtime +1)" && ( "$OPENAPPHACK_REMOTE_VERSION" != "$OPENAPPHACK_VERSION" ) ]]; then
+    if [[ -n "$(find "$OAH_DELAY_UPGRADE" -mtime +1)" && ( "$OAH_REMOTE_VERSION" != "$OAH_VERSION" ) ]]; then
         echo ""
         echo ""
-        echo "ATTENTION: A new version of OPENAPPHACK is available..."
+        echo "ATTENTION: A new version of OAH is available..."
         echo ""
-        echo "The current version is $OPENAPPHACK_REMOTE_VERSION, but you have $OPENAPPHACK_VERSION."
+        echo "The current version is $OAH_REMOTE_VERSION, but you have $OAH_VERSION."
         echo ""
 
-        if [[ "$openapphack_auto_selfupdate" != "true" ]]; then
+        if [[ "$oah_auto_selfupdate" != "true" ]]; then
             echo -n "Would you like to upgrade now? (Y/n)"
             read upgrade
         fi
@@ -44,7 +44,7 @@ function __oah_auto_update {
             echo "Not upgrading today..."
         fi
 
-        touch "${OPENAPPHACK_DELAY_UPGRADE}"
+        touch "${OAH_DELAY_UPGRADE}"
     fi
 
 }

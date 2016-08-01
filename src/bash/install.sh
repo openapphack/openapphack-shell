@@ -31,6 +31,7 @@ oah_platform=$(uname)
 oah_init_snippet=$( cat << EOF
 #THIS MUST BE AT THE END OF THE FILE FOR OAH TO WORK!!!
 export OAH_DIR="$HOME/.oah"
+
 [[ -s "${OAH_DIR}/bin/oah-init.sh" ]] && source "${OAH_DIR}/bin/oah-init.sh"
 EOF
 )

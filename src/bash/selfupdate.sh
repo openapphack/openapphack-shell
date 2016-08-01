@@ -59,17 +59,17 @@ mkdir -p "${OAH_DIR}/bin"
 mkdir -p "${OAH_DIR}/ext"
 mkdir -p "${OAH_DIR}/etc"
 mkdir -p "${OAH_DIR}/src"
-mkdir -p "${OAH_DIR}/var"
+mkdir -p "${OAH_DIR}/data/var"
 mkdir -p "${OAH_DIR}/tmp"
-mkdir -p "${OAH_DIR}/vm"
-mkdir -p "${OAH_DIR}/.vms"
+mkdir -p "${OAH_DIR}/data/envs"
+mkdir -p "${OAH_DIR}/.envs"
 
 # prepare candidates
 OAH_CANDIDATES_CSV=$(curl -s "${OAH_INSTALLER_SERVICE}/candidates")
-echo "$OAH_CANDIDATES_CSV" > "${OAH_DIR}/var/candidates"
+echo "$OAH_CANDIDATES_CSV" > "${OAH_DIR}/data/var/candidates"
 
 # drop version token
-echo "$OAH_VERSION" > "${OAH_DIR}/var/version"
+echo "$OAH_VERSION" > "${OAH_DIR}/data/var/version"
 
 # create candidate directories
 # convert csv to array
