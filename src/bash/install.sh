@@ -4,7 +4,7 @@
 #OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/
 OAH_INSTALLER_SERVICE="@OAH_INSTALLER_SERVICE@"
 #OAH meta data service for validated OAH environments
-#OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/envinfo/candidates.txt
+#OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/envsinfo/candidates.txt
 OAH_ENVS_INFO_SERVICE="@OAH_ENVS_INFO_SERVICE@"
 #OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/broadcast/broadcast.txt
 OAH_BROADCAST_SERVICE="@OAH_BROADCAST_SERVICE@"

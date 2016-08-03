@@ -7,42 +7,49 @@ function oah {
     QUALIFIER="$2"
 
     case "$COMMAND" in
-        l)
+      s)
+        COMMAND="show";;
+
+      s)
+          COMMAND="show";;
+
+      l)
             COMMAND="list";;
-        ls)
+      ls)
             COMMAND="list";;
-        h)
+
+      h)
             COMMAND="help";;
-        v)
+      v)
             COMMAND="version";;
-        u)
+      u)
             COMMAND="use";;
-        up)
+      up)
             COMMAND="up";;
-        halt)
+      halt)
             COMMAND="halt";;
-        k)
+      k)
             COMMAND="halt";;
-        provision)
+      provision)
             COMMAND="provision";;
-        p)
+      p)
             COMMAND="provision";;
 
-        destroy)
+      destroy)
             COMMAND="destroy";;
-        x)
+      x)
             COMMAND="destroy";;
-        i)
+      i)
             COMMAND="install";;
-        rm)
+      rm)
             COMMAND="uninstall";;
-        c)
+      c)
             COMMAND="current";;
-        o)
+      o)
             COMMAND="outdated";;
-        d)
+      d)
             COMMAND="default";;
-        b)
+      b)
             COMMAND="broadcast";;
     esac
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# To be refactored to work similar to ove show current [env]
 function __oah_determine_current_version {
 	CANDIDATE="$1"
 	if [[ "${solaris}" == true ]]; then
