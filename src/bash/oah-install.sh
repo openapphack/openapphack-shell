@@ -76,8 +76,8 @@ function __oah_install_local_version {
 	CANDIDATE="$1"
 	VERSION="${2:=master}"
 	LOCAL_FOLDER="$3"
-	CANDIDATE_VM_LOCATION="${OAH_DIR}/.envs/${CANDIDATE}"
-	mkdir -p "${CANDIDATE_VM_LOCATION}"
+	CANDIDATE_ENV_LOCATION="${OAH_DIR}/.envs/${CANDIDATE}"
+	mkdir -p "${CANDIDATE_ENV_LOCATION}"
 
 	echo "Linking ${CANDIDATE} ${VERSION} to ${LOCAL_FOLDER}"
 	ln -s "${LOCAL_FOLDER}" "${OAH_DIR}/.envs/${CANDIDATE}/${VERSION}"
