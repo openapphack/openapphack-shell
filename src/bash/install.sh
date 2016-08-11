@@ -1,15 +1,16 @@
 #!/bin/bash
 
 # Global variables
-#OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/
-OAH_INSTALLER_SERVICE="@OAH_INSTALLER_SERVICE@"
+OAH_INSTALLER_SERVICE="https://raw.githubusercontent.com/openapphack/oah-installer/"
+#OAH_INSTALLER_SERVICE="@OAH_INSTALLER_SERVICE@"
 #OAH meta data service for validated OAH environments
-#OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/envsinfo/candidates.txt
-OAH_ENVS_INFO_SERVICE="@OAH_ENVS_INFO_SERVICE@"
-#OAH_INSTALLER_SERVICE=https://openapphack.github.io/oah-installer/broadcast/broadcast.txt
-OAH_BROADCAST_SERVICE="@OAH_BROADCAST_SERVICE@"
-#OAH_VERSION=0.0.1a1
-OAH_VERSION="@OAH_VERSION@"
+
+OAH_ENVS_INFO_SERVICE="https://raw.githubusercontent.com/openapphack/oah-installer/master/envsinfo/candidates.txt"
+#OAH_ENVS_INFO_SERVICE="@OAH_ENVS_INFO_SERVICE@"
+OAH_BROADCAST_SERVICE="https://raw.githubusercontent.com/openapphack/oah-installer/master/broadcast/"
+#OAH_BROADCAST_SERVICE="@OAH_BROADCAST_SERVICE@"
+OAH_VERSION=0.0.1a1
+#OAH_VERSION="@OAH_VERSION@"
 OAH_DIR="$HOME/.oah"
 
 # Local variables
